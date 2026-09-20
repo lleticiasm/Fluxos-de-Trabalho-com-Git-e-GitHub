@@ -1,2 +1,1 @@
-sistema de cadastro de produtos
-
+sistema de cadastro de produtos desenvolvido para atividade de Fluxos de Trabalho com Git e GitHub do curso téncico em desenvolvimento de sistemas
