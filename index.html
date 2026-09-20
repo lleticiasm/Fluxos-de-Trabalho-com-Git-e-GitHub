@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bolos da Maria — Estoque de Matéria-Prima</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <h1>Bolos da Maria</h1>
+    <span class="tagline">controle de matéria-prima</span>
+  </div>
+  <div class="summary-row" id="summaryRow"></div>
+</header>
+
+<main>
+  <aside>
+    <h2 id="formTitle">Novo produto</h2>
+    <form id="productForm">
+      <div class="field">
+        <label for="nome">Nome do produto</label>
+        <input type="text" id="nome" placeholder="Farinha de trigo" required>
+      </div>
+
+      <div class="field">
+        <label for="categoria">Categoria</label>
+        <select id="categoria" required>
+          <option value="" disabled selected>Selecione</option>
+          <option>Farinhas</option>
+          <option>Açúcares</option>
+          <option>Chocolates</option>
+          <option>Laticínios</option>
+          <option>Fermentos e leveduras</option>
+          <option>Recheios e coberturas</option>
+          <option>Aromas e essências</option>
+          <option>Ovos</option>
+          <option>Outros</option>
+        </select>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="quantidade">Quantidade</label>
+          <input type="number" id="quantidade" min="0" step="0.01" placeholder="0" required>
+        </div>
+        <div class="field">
+          <label for="unidade">Unidade</label>
+          <select id="unidade" required>
+            <option value="kg">kg</option>
+            <option value="g">g</option>
+            <option value="L">L</option>
+            <option value="ml">ml</option>
+            <option value="un">unidade</option>
+            <option value="dz">dúzia</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="estoqueMinimo">Estoque mínimo (alerta)</label>
+        <input type="number" id="estoqueMinimo" min="0" step="0.01" placeholder="0">
+      </div>
+
+      <div class="field">
+        <label for="fornecedor">Fornecedor (opcional)</label>
+        <input type="text" id="fornecedor" placeholder="Distribuidora Doce Sabor">
+      </div>
+
+      <div class="field">
+        <label for="validade">Validade (opcional)</label>
+        <input type="date" id="validade">
+      </div>
+
+      <button type="submit" class="primary" id="submitBtn">Adicionar ao estoque</button>
+      <button type="button" class="ghost" id="cancelEditBtn" style="display:none;">Cancelar edição</button>
+      <div class="form-msg" id="formMsg"></div>
+    </form>
+  </aside>
+
+  <section class="list">
+    <div class="list-controls">
+      <input type="text" id="searchInput" placeholder="Buscar por nome ou fornecedor...">
+      <select id="filterCategoria">
+        <option value="">Todas as categorias</option>
+      </select>
+      <select id="filterStatus">
+        <option value="">Todos os status</option>
+        <option value="ok">Estoque OK</option>
+        <option value="low">Estoque baixo</option>
+      </select>
+    </div>
+
+    <div class="table-wrap" id="tableWrap"></div>
+  </section>
+</main>
+
+<footer>Bolos da Maria &middot; estoque salvo neste navegador</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
