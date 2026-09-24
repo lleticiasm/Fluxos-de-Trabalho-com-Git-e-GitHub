@@ -31,9 +31,7 @@
   }
 
   function fmtQty(p){
-    const q = Number(p.quantidade);
-    const qStr = Number.isInteger(q) ? q.toString() : q.toFixed(2);
-    return qStr + ' ' + p.unidade;
+    return Number(p.quantidade) + ' ' + p.unidade;
   }
 
   function fmtDate(iso){
@@ -99,17 +97,17 @@
 
     const nome = nomeEl.value.trim();
     const categoria = categoriaEl.value;
-    const quantidade = parseFloat(quantidadeEl.value);
+    const quantidade = parseInt(quantidadeEl.value, 10);
     const unidade = unidadeEl.value;
     const estoqueMinimoRaw = estoqueMinimoEl.value;
-    const estoqueMinimo = estoqueMinimoRaw === '' ? null : parseFloat(estoqueMinimoRaw);
+    const estoqueMinimo = estoqueMinimoRaw === '' ? null : parseInt(estoqueMinimoRaw, 10);
     const fornecedor = fornecedorEl.value.trim();
     const validade = validadeEl.value;
 
     if(!nome){ showFormMsg('Informe o nome do produto.', 'error'); nomeEl.focus(); return; }
     if(!categoria){ showFormMsg('Selecione uma categoria.', 'error'); categoriaEl.focus(); return; }
-    if(isNaN(quantidade) || quantidade < 0){ showFormMsg('Informe uma quantidade válida.', 'error'); quantidadeEl.focus(); return; }
-    if(estoqueMinimo !== null && (isNaN(estoqueMinimo) || estoqueMinimo < 0)){ showFormMsg('Estoque mínimo inválido.', 'error'); estoqueMinimoEl.focus(); return; }
+    if(!Number.isInteger(quantidade) || quantidade < 0){ showFormMsg('Informe uma quantidade em número inteiro.', 'error'); quantidadeEl.focus(); return; }
+    if(estoqueMinimo !== null && (!Number.isInteger(estoqueMinimo) || estoqueMinimo < 0)){ showFormMsg('Estoque mínimo deve ser um número inteiro.', 'error'); estoqueMinimoEl.focus(); return; }
 
     if(editingId){
       const p = produtos.find(x => x.id === editingId);
